@@ -9,10 +9,9 @@ let crafts = [];
 /** Nodes */
 
 const mainDiv = () => document.getElementById('main');
-
 const homePageLink = () => document.getElementById('home-page-link');
-
 const craftListLink = () => document.getElementById('craft-list-link');
+const craftFormLink = () => document.getElementById('craft-form-link');
 
 /* Templates */
 
@@ -84,7 +83,7 @@ const renderHomePage = () => {
     mainDiv().innerHTML = ''
     const h1 = document.createElement('h1');
     h1.classList.add('center-align');
-    h1.innerText = 'Create craft'
+    h1.innerText = 'Filter crafts'
     mainDiv().appendChild(h1);
   }
   
@@ -124,7 +123,18 @@ const renderCrafts = () => {
     return crafts.map(craft => craftTemplate(craft));
 }
 
+const renderCraftFormPage = () => {
+  // alert('meal form has been loaded!')
+  // mainDiv.innerHTML = ''
+  // const h1 = document.createElement('h1');
+  // mainDiv().appendChild(h1);
+}
+
 /** Events **/
+
+// when does it happen?
+// what will trigger this event?
+// what will happen when event is triggered?
 
 // fetch() places action at the bottom of the stack, use async to load in order
 
@@ -161,11 +171,21 @@ const craftPageLinkEvent = () => {
     })  
   } 
 
+const craftFormLinkEvent = () => {
+  craftFormLink().addEventListener('click', (e) => 
+  {
+    e.preventDefault();
+    renderCraftFormPage();
+  })
+}
+
+
 /** When DOM Loads **/
 
 document.addEventListener('DOMContentLoaded', () => {
     renderHomePage();
     homePageLinkEvent();
-    craftPageLinkEvent(); 
+    craftPageLinkEvent();
+    craftFormLinkEvent();
 })
 
