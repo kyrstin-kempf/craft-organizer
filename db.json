@@ -1,0 +1,25 @@
+{
+    "crafts": [
+        {
+            "id": 1,
+            "medium": "painting",
+            "method": "watercolor",
+            "level": "easy",
+            "link": "link"
+        },
+        {
+            "id": 2,
+            "medium": "painting",
+            "method": "acrylic",
+            "level": "easy",
+            "link": "link"
+        },
+        {
+            "id": 3,
+            "medium": "painting",
+            "method": "oil",
+            "level": "easy",
+            "link": "link"
+        }
+    ]
+}
