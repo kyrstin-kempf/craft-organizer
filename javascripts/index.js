@@ -2,7 +2,7 @@
 
 /** Globals */
 
-const localURL = 'http://localHost3000';
+const localURL = 'http://localhost:3000';
 
 let crafts = [];
 
@@ -35,7 +35,7 @@ const craftListTemplate = () => {
           </tr>
         </thead>
         <tbody>
-          ${ renderCraftListPage() }
+          ${ renderCrafts() }
         </tbody>
       </table>
     `
@@ -69,30 +69,36 @@ const renderCrafts = () => {
 
 // fetch() places action at the bottom of the stack, use async to load in order
 
-// const loadCrafts = () => {
-//   fetch(localURL + '/crafts')
-//   .then(resp => resp.json())
-//   .then(data => crafts = data)
-// }
-
-const loadCrafts = async () => {
-  const resp = await fetch(loadURL + '/crafts')
-  const data = await resp.json();
-  meals = data;
+const loadCrafts = () => {
+  fetch(localURL + '/crafts')
+  .then(resp => resp.json())
+  .then(data => crafts = data)
 }
 
+// const loadCrafts = async () => {
+//   console.log('a')
+//   const resp = await fetch(localURL + '/crafts')
+//   console.log('b')
+//   const data = await resp.json(); 
+//   console.log('c')
+//   crafts = data;
+//   console.log('d')
+// }
+
 const homePageLinkEvent = () => {
-  homePageLink().addEventListener('click', (e) => {
+  homePageLink().addEventListener('click', (e) => 
+  {
      e.preventDefault();
      renderHomePage(); 
   })  
 } 
 
 const craftPageLinkEvent = () => {
-    craftListLink().addEventListener('click', (e) => {
+    craftListLink().addEventListener('click', async (e) => 
+    {
        e.preventDefault();
-       loadCrafts();
-      //  renderCraftListPage(); 
+       await loadCrafts();
+       renderCraftListPage(); 
     })  
   } 
 
@@ -101,6 +107,6 @@ const craftPageLinkEvent = () => {
 document.addEventListener('DOMContentLoaded', () => {
     renderHomePage();
     homePageLinkEvent();
-    craftPageLinkEvent();
+    craftPageLinkEvent(); 
 })
 
