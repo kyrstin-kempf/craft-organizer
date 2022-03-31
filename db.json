@@ -5,21 +5,24 @@
             "medium": "painting",
             "method": "watercolor",
             "level": "easy",
-            "link": "link"
+            "source": "YouTube",
+            "link": "www.youtube.com"
         },
         {
             "id": 2,
             "medium": "painting",
             "method": "acrylic",
             "level": "easy",
-            "link": "link"
+            "source": "YouTube",
+            "link": "www.youtube.com"
         },
         {
             "id": 3,
             "medium": "painting",
             "method": "oil",
             "level": "easy",
-            "link": "link"
+            "source": "YouTube",
+            "link": "www.youtube.com"
         }
     ]
 }

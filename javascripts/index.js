@@ -44,10 +44,10 @@ const craftListTemplate = () => {
 const craftTemplate = (craft) => {
   return `
   <tr>
-    <td>Painting</td>
-    <td>Watercolor</td>
-    <td>Easy</td>
-    <td><a href="https://www.youtube.com/watch?v=3kojEoKgrTY">YouTube</a></td>
+    <td>${ craft.medium }</td>
+    <td>${ craft.method }</td>
+    <td>${ craft.level }</td>
+    <td><a href=${ craft.link }>${ craft.source }</a></td>
   </tr>`
 }
 
@@ -62,7 +62,7 @@ const renderCraftListPage = () => {
 }
 
 const renderCrafts = () => {
-  
+    return crafts.map(craft => craftTemplate(craft));
 }
 
 /** Events **/
