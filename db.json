@@ -2,25 +2,25 @@
     "crafts": [
         {
             "id": 1,
-            "medium": "painting",
-            "method": "watercolor",
-            "level": "easy",
+            "medium": "Painting",
+            "method": "Watercolor",
+            "level": "Easy",
             "source": "YouTube",
             "link": "www.youtube.com"
         },
         {
             "id": 2,
-            "medium": "painting",
-            "method": "acrylic",
-            "level": "easy",
-            "source": "YouTube",
-            "link": "www.youtube.com"
+            "medium": "Painting",
+            "method": "Acrylic",
+            "level": "Easy",
+            "source": "Google",
+            "link": "www.google.com"
         },
         {
             "id": 3,
-            "medium": "painting",
-            "method": "oil",
-            "level": "easy",
+            "medium": "Painting",
+            "method": "Oil",
+            "level": "Easy",
             "source": "YouTube",
             "link": "www.youtube.com"
         }
