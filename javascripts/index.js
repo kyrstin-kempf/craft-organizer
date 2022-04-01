@@ -56,6 +56,7 @@ const craftTemplate = (craft) => {
   const tdSourceLink = document.createElement('a');
   const tdLink = craft.link;
   tdSourceLink.setAttribute('href', tdLink);
+  tdSourceLink.classList.add('allLinks')
   // a.href = craft.link;
   // console.log(a)
   tdMedium.innerText = craft.medium;
@@ -99,7 +100,8 @@ const renderHomePage = () => {
       const thLevel = document.createElement('th');
       const thSource = document.createElement('th');
     const tbody = document.createElement('tbody');
-    h1.innerText = 'All Crafts'  
+    h1.innerText = 'All Crafts'
+    h1.classList.add('title')  
       thMedium.innerText = 'Medium';  
       thMethod.innerText = 'Method';
       thLevel.innerText = 'Level';
