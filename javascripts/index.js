@@ -83,8 +83,9 @@ const craftTemplate = (craft) => {
 const renderHomePage = () => {
     mainDiv().innerHTML = ''
     const h1 = document.createElement('h1');
-    h1.classList.add('center-align');
-    h1.innerText = 'Filter crafts'
+    h1.classList.add('title');
+    h1.innerText = 'Filter Crafts'
+
     mainDiv().appendChild(h1);
   }
   
@@ -132,6 +133,38 @@ const renderCraftFormPage = () => {
   // mainDiv.innerHTML = ''
   // const h1 = document.createElement('h1');
   // mainDiv().appendChild(h1);
+
+  <h1 class="title">Add Craft</h1>
+      <h2 class="add-craft-title">Complete the form below to add a craft to the Craft Organizer.</h2>
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="medium" placeholder="painting, clay, paper, etc." type="text">
+              <label for="medium">Medium</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="method" placeholder="watercolor, freestyle, collage, etc." type="text">
+              <label for="method">Method</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="level" placeholder="easy, medium, hard" type="text">
+              <label for="level">Challenge Level</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="source" placeholder="YouTube, Google, etc." type="text">
+              <label for="source">Source</label>
+            </div>
+          </div>
+          <div class="input-field unique">
+              <input placeholder="wwww.youtube.com/watch01" type="text">
+              <label for="link">Source Link</label>
+          </div>
+          <input type="submit" value="Add Craft" class="waves-effect waves-light btn deep-orange lighten-3">
+        </form>
+        </div>
 }
 
 /** Events **/
