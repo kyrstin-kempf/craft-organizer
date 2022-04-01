@@ -125,6 +125,8 @@ const renderCrafts = () => {
 
 const renderCraftFormPage = () => {
   // alert('meal form has been loaded!')
+  // use alert to test!
+
   // mainDiv.innerHTML = ''
   // const h1 = document.createElement('h1');
   // mainDiv().appendChild(h1);
@@ -183,7 +185,7 @@ const craftFormLinkEvent = () => {
 /** When DOM Loads **/
 
 document.addEventListener('DOMContentLoaded', () => {
-    renderHomePage();
+    // renderHomePage();
     homePageLinkEvent();
     craftPageLinkEvent();
     craftFormLinkEvent();

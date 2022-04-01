@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -17,7 +18,7 @@
         <div class="nav-wrapper container">
           <a href="#" class="brand-logo" id="home-page-link">Craft Organizer</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#" id="craft-form-link">Create Craft</a></li>
+            <li><a href="#" id="craft-form-link">Add Craft</a></li>
             <li><a href="#" id="craft-list-link">All Crafts</a></li>
             <li><a href="#">Favorites</a></li>
           </ul>
@@ -25,7 +26,37 @@
     </nav>
     <div class="container">
     <div id="main">
-
+      <h1 class="title">Add Craft</h1>
+      <h2 class="add-craft-title">Complete the form below to add a craft to the Craft Organizer.</h2>
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="medium" placeholder="painting, clay, paper, etc." type="text">
+              <label for="medium">Medium</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="method" placeholder="watercolor, freestyle, collage, etc." type="text">
+              <label for="method">Method</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="level" placeholder="easy, medium, hard" type="text">
+              <label for="level">Challenge Level</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="source" placeholder="YouTube, Google, etc." type="text">
+              <label for="source">Source</label>
+            </div>
+          </div>
+          <div class="input-field">
+              <input placeholder="wwww.youtube.com/watch01" type="text" class="validate">
+              <label for="link">Source Link</label>
+          </div>
+          <input type="submit" value="Add Craft" class="waves-effect waves-light btn deep-orange lighten-3">
+        </form>
+        </div>
     </div>
     </div>
     <script src="javascripts/index.js"></script>
