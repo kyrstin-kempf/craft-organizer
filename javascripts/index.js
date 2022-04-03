@@ -12,6 +12,11 @@ const mainDiv = () => document.getElementById('main');
 const homePageLink = () => document.getElementById('home-page-link');
 const craftListLink = () => document.getElementById('craft-list-link');
 const craftFormLink = () => document.getElementById('craft-form-link');
+const mediumValue = () => document.getElementById('medium');
+const methodValue = () => document.getElementById('method');
+const levelValue = () => document.getElementById('level');
+const sourceValue = () => document.getElementById('source');
+const sourceLinkValue = () => document.getElementById('source-link');
 
 /* Templates */
 
@@ -54,7 +59,7 @@ const craftTemplate = (craft) => {
   const tdLevel = document.createElement('td');
   const tdSource = document.createElement('td');
   const tdSourceLink = document.createElement('a');
-  const tdLink = craft.link;
+  const tdLink = document.createElement('a');
   tdSourceLink.setAttribute('href', tdLink);
   tdSourceLink.classList.add('allLinks')
   // a.href = craft.link;
@@ -89,8 +94,9 @@ const renderHomePage = () => {
     mainDiv().appendChild(h1);
   }
   
-  const renderCraftListPage = () => {
+  const renderCraftListPage = async () => {
     // mainDiv().innerHTML = craftListTemplate();
+    await loadCrafts();
     mainDiv().innerHTML = ''
     const h1 = document.createElement('h1');
     const table = document.createElement('table');
@@ -115,7 +121,7 @@ const renderHomePage = () => {
       tr.appendChild(thSource);
       thead.appendChild(tr);
       table.appendChild(tr);
-    console.log(table)
+    // console.log(table)
     crafts.forEach(craft => tbody.appendChild(craftTemplate(craft)))
     table.appendChild(tbody);
     mainDiv().appendChild(h1);
@@ -129,7 +135,7 @@ const renderCrafts = () => {
 const renderCraftFormPage = () => {
   // alert('meal form has been loaded!')
   // use alert to test!
-
+  mainDiv().innerHTML = ''
   const h1 = document.createElement('h1');
   const h2 = document.createElement('h2')
   const formDiv = document.createElement('div');
@@ -261,13 +267,13 @@ const renderCraftFormPage = () => {
 // }
 
 const loadCrafts = async () => {
-  console.log('a')
+  // console.log('a')
   const resp = await fetch(localURL + '/crafts')
-  console.log('b')
+  // console.log('b')
   const data = await resp.json(); 
-  console.log('c')
+  // console.log('c')
   crafts = data;
-  console.log('d')
+  // console.log('d')
 }
 
 const homePageLinkEvent = () => {
@@ -279,10 +285,10 @@ const homePageLinkEvent = () => {
 } 
 
 const craftPageLinkEvent = () => {
-    craftListLink().addEventListener('click', async (e) => 
+    craftListLink().addEventListener('click', (e) => 
     {
        e.preventDefault();
-       await loadCrafts();
+      //  await loadCrafts();
        renderCraftListPage(); 
     })  
   } 
@@ -299,19 +305,39 @@ const submitFormEvent = (e) => {
   e.preventDefault();
   // console.log(e.target.children);
   const [medium, method, level, source, sourceLink] = e.target.children;
-  // const medium = e.target.children[0][0]
-  // const method = e.target.children[0][1]
+  // const medium = e.target.children[0]
+  // const method = e.target.children[1]
   // const level = e.target.children[2]
   // const source = e.target.children[3]
   // const sourceLink = e.target.children[4]
   // console.log(e)
   // // console.log(e.target)
   // // console.log(e.target.children)
-  console.log('medium', medium.children[0].value);
-  console.log('method', method.children[0].value);
-  console.log('level', level.children[0].value);
-  console.log('source', source.children[0].value);
-  console.log('sourceLink', sourceLink.children[0].value);
+  // console.log('medium', mediumValue().value);
+  // console.log('method', methodValue().value);
+  // console.log('level', levelValue().value);
+  // console.log('source', sourceValue().value);
+  // console.log('sourceLink', sourceLinkValue().value);
+  fetch('http://localhost:3000/crafts', {
+    method: 'POST',
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      medium: mediumValue().value,
+      method: methodValue().value,
+      level: levelValue().value,
+      source: sourceValue().value,
+      sourceLink: sourceLinkValue().value,
+    })
+  })
+  .then(resp => resp.json())
+  .then(craft => {
+    renderCraftListPage();
+    // crafts.push(craft);
+    // console.log(craft)
+  })
 }
 
 
