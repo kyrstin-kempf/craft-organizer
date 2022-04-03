@@ -130,41 +130,113 @@ const renderCraftFormPage = () => {
   // alert('meal form has been loaded!')
   // use alert to test!
 
-  // mainDiv.innerHTML = ''
-  // const h1 = document.createElement('h1');
-  // mainDiv().appendChild(h1);
+  const h1 = document.createElement('h1');
+  const h2 = document.createElement('h2')
+  const formDiv = document.createElement('div');
+  const form = document.createElement('form');
+  const firstRowDiv = document.createElement('div');
+  const mediumDiv = document.createElement('div');
+  const mediumInput = document.createElement('input');
+  const mediumLabel = document.createElement('label');
+  const methodDiv = document.createElement('div');
+  const methodInput = document.createElement('input');
+  const methodLabel = document.createElement('label');
+  const secondRowDiv = document.createElement('div');
+  const levelDiv = document.createElement('div');
+  const levelInput = document.createElement('input');
+  const levelLabel = document.createElement('label');
+  const sourceDiv = document.createElement('div');
+  const sourceInput = document.createElement('input');
+  const sourceLabel = document.createElement('label');
+  const thirdRowDiv = document.createElement('div');
+  const sourceLinkDiv = document.createElement('div');
+  const sourceLinkInput = document.createElement('input');
+  const sourceLinkLabel = document.createElement('label');
+  
+  // const addCraftBtn = document.createElement('input');
 
-  <h1 class="title">Add Craft</h1>
-      <h2 class="add-craft-title">Complete the form below to add a craft to the Craft Organizer.</h2>
-      <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <div class="input-field col s6">
-              <input id="medium" placeholder="painting, clay, paper, etc." type="text">
-              <label for="medium">Medium</label>
-            </div>
-            <div class="input-field col s6">
-              <input id="method" placeholder="watercolor, freestyle, collage, etc." type="text">
-              <label for="method">Method</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6">
-              <input id="level" placeholder="easy, medium, hard" type="text">
-              <label for="level">Challenge Level</label>
-            </div>
-            <div class="input-field col s6">
-              <input id="source" placeholder="YouTube, Google, etc." type="text">
-              <label for="source">Source</label>
-            </div>
-          </div>
-          <div class="input-field unique">
-              <input placeholder="wwww.youtube.com/watch01" type="text">
-              <label for="link">Source Link</label>
-          </div>
-          <input type="submit" value="Add Craft" class="waves-effect waves-light btn deep-orange lighten-3">
-        </form>
-        </div>
+  h1.className = 'title';
+  h2.className = 'add-craft-title';
+  formDiv.className = 'row';
+  form.className = 'col s12';
+  firstRowDiv.className = 'row';
+  secondRowDiv.className = 'row';
+  thirdRowDiv.className = 'row';
+  mediumDiv.className = 'input-field col s6';
+  methodDiv.className = 'input-field col s6';
+  levelDiv.className = 'input-field col s6';
+  sourceDiv.className = 'input-field col s6';
+  sourceLinkDiv.className = 'input-field col s12';
+
+  mediumInput.setAttribute('placeholder', 'painting, clay, paper, etc.');
+  mediumInput.setAttribute('id', 'medium');
+  mediumInput.setAttribute('type', 'text');
+  mediumLabel.setAttribute('for', 'medium');
+
+  methodInput.setAttribute('placeholder', 'watercolor, freestyle, collage, etc.');
+  methodInput.setAttribute('id', 'method');
+  methodInput.setAttribute('type', 'text');
+  methodLabel.setAttribute('for', 'method');
+
+  levelInput.setAttribute('placeholder', 'easy, medium, hard');
+  levelInput.setAttribute('id', 'level');
+  levelInput.setAttribute('type', 'text');
+  levelLabel.setAttribute('for', 'level');
+
+  sourceInput.setAttribute('placeholder', 'YouTube, Google, etc.');
+  sourceInput.setAttribute('id', 'source');
+  sourceInput.setAttribute('type', 'text');
+  sourceLabel.setAttribute('for', 'source');
+
+  sourceLinkInput.setAttribute('placeholder', 'wwww.youtube.com/watch01');
+  sourceLinkInput.setAttribute('id', 'source-link');
+  sourceLinkInput.setAttribute('type', 'url');
+  sourceLinkLabel.setAttribute('for', 'source-link');
+  
+  h1.innerText = 'Add Craft'; 
+  h2.innerText = 'Complete the form below to add a craft to the Craft Organizer.';
+  mediumLabel.innerText = 'Medium';
+  methodLabel.innerText = 'Method';
+  levelLabel.innerText = 'Challenge Level';
+  sourceLabel.innerText = 'Source';
+  sourceLinkLabel.innerText = 'Source Link';
+
+  mediumDiv.appendChild(mediumInput);
+  mediumDiv.appendChild(mediumLabel);
+  methodDiv.appendChild(methodInput);
+  methodDiv.appendChild(methodLabel);
+
+  levelDiv.appendChild(levelInput);
+  levelDiv.appendChild(levelLabel);
+  sourceDiv.appendChild(sourceInput);
+  sourceDiv.appendChild(sourceLabel);
+  sourceLinkDiv.appendChild(sourceLinkInput);
+  sourceLinkDiv.appendChild(sourceLinkLabel);
+
+  formDiv.appendChild(form);
+  form.appendChild(firstRowDiv);
+  form.appendChild(secondRowDiv);
+  form.appendChild(thirdRowDiv);
+  firstRowDiv.appendChild(mediumDiv);
+  firstRowDiv.appendChild(methodDiv);
+  secondRowDiv.appendChild(levelDiv);
+  secondRowDiv.appendChild(sourceDiv);
+  thirdRowDiv.appendChild(sourceLinkDiv);
+
+  // console.log(mediumInput);
+  // console.log(mediumLabel);
+  // console.log(mediumDiv);
+  console.log(formDiv);
+
+  mainDiv().appendChild(h1);
+  mainDiv().appendChild(h2);
+  mainDiv().appendChild(formDiv);
+
+
+        //  
+        //   <input type="submit" value="Add Craft" class="waves-effect waves-light btn deep-orange lighten-3">
+        // </form>
+        // </div>
 }
 
 /** Events **/
