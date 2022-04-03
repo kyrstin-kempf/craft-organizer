@@ -134,39 +134,41 @@ const renderCraftFormPage = () => {
   const h2 = document.createElement('h2')
   const formDiv = document.createElement('div');
   const form = document.createElement('form');
-  const firstRowDiv = document.createElement('div');
+  // const firstRowDiv = document.createElement('div');
   const mediumDiv = document.createElement('div');
   const mediumInput = document.createElement('input');
   const mediumLabel = document.createElement('label');
   const methodDiv = document.createElement('div');
   const methodInput = document.createElement('input');
   const methodLabel = document.createElement('label');
-  const secondRowDiv = document.createElement('div');
+  // const secondRowDiv = document.createElement('div');
   const levelDiv = document.createElement('div');
   const levelInput = document.createElement('input');
   const levelLabel = document.createElement('label');
   const sourceDiv = document.createElement('div');
   const sourceInput = document.createElement('input');
   const sourceLabel = document.createElement('label');
-  const thirdRowDiv = document.createElement('div');
+  // const thirdRowDiv = document.createElement('div');
   const sourceLinkDiv = document.createElement('div');
   const sourceLinkInput = document.createElement('input');
   const sourceLinkLabel = document.createElement('label');
+  const addCraftBtn = document.createElement('input');
   
   // const addCraftBtn = document.createElement('input');
 
   h1.className = 'title';
   h2.className = 'add-craft-title';
   formDiv.className = 'row';
-  form.className = 'col s12';
-  firstRowDiv.className = 'row';
-  secondRowDiv.className = 'row';
-  thirdRowDiv.className = 'row';
+  // form.className = 'col s12';
+  // firstRowDiv.className = 'row';
+  // secondRowDiv.className = 'row';
+  // thirdRowDiv.className = 'row';
   mediumDiv.className = 'input-field col s6';
   methodDiv.className = 'input-field col s6';
   levelDiv.className = 'input-field col s6';
   sourceDiv.className = 'input-field col s6';
   sourceLinkDiv.className = 'input-field col s12';
+  addCraftBtn.className = 'waves-effect waves-light btn deep-orange lighten-3';
 
   mediumInput.setAttribute('placeholder', 'painting, clay, paper, etc.');
   mediumInput.setAttribute('id', 'medium');
@@ -190,8 +192,11 @@ const renderCraftFormPage = () => {
 
   sourceLinkInput.setAttribute('placeholder', 'wwww.youtube.com/watch01');
   sourceLinkInput.setAttribute('id', 'source-link');
-  sourceLinkInput.setAttribute('type', 'url');
+  sourceLinkInput.setAttribute('type', 'text');
   sourceLinkLabel.setAttribute('for', 'source-link');
+
+  addCraftBtn.setAttribute('type', 'submit');
+  addCraftBtn.setAttribute('value', 'Add Craft');
   
   h1.innerText = 'Add Craft'; 
   h2.innerText = 'Complete the form below to add a craft to the Craft Organizer.';
@@ -214,29 +219,31 @@ const renderCraftFormPage = () => {
   sourceLinkDiv.appendChild(sourceLinkLabel);
 
   formDiv.appendChild(form);
-  form.appendChild(firstRowDiv);
-  form.appendChild(secondRowDiv);
-  form.appendChild(thirdRowDiv);
-  firstRowDiv.appendChild(mediumDiv);
-  firstRowDiv.appendChild(methodDiv);
-  secondRowDiv.appendChild(levelDiv);
-  secondRowDiv.appendChild(sourceDiv);
-  thirdRowDiv.appendChild(sourceLinkDiv);
+  // form.appendChild(firstRowDiv);
+  // form.appendChild(secondRowDiv);
+  // form.appendChild(thirdRowDiv);
+  form.appendChild(mediumDiv);
+  form.appendChild(methodDiv);
+  form.appendChild(levelDiv);
+  form.appendChild(sourceDiv);
+  form.appendChild(sourceLinkDiv);
+  form.appendChild(addCraftBtn);
+  // firstRowDiv.appendChild(mediumDiv);
+  // firstRowDiv.appendChild(methodDiv);
+  // secondRowDiv.appendChild(levelDiv);
+  // secondRowDiv.appendChild(sourceDiv);
+  // thirdRowDiv.appendChild(sourceLinkDiv);
+
+  form.addEventListener('submit', submitFormEvent);
 
   // console.log(mediumInput);
   // console.log(mediumLabel);
   // console.log(mediumDiv);
-  console.log(formDiv);
+  // console.log(formDiv);
 
   mainDiv().appendChild(h1);
   mainDiv().appendChild(h2);
   mainDiv().appendChild(formDiv);
-
-
-        //  
-        //   <input type="submit" value="Add Craft" class="waves-effect waves-light btn deep-orange lighten-3">
-        // </form>
-        // </div>
 }
 
 /** Events **/
@@ -286,6 +293,25 @@ const craftFormLinkEvent = () => {
     e.preventDefault();
     renderCraftFormPage();
   })
+}
+
+const submitFormEvent = (e) => {
+  e.preventDefault();
+  // console.log(e.target.children);
+  const [medium, method, level, source, sourceLink] = e.target.children;
+  // const medium = e.target.children[0][0]
+  // const method = e.target.children[0][1]
+  // const level = e.target.children[2]
+  // const source = e.target.children[3]
+  // const sourceLink = e.target.children[4]
+  // console.log(e)
+  // // console.log(e.target)
+  // // console.log(e.target.children)
+  console.log('medium', medium.children[0].value);
+  console.log('method', method.children[0].value);
+  console.log('level', level.children[0].value);
+  console.log('source', source.children[0].value);
+  console.log('sourceLink', sourceLink.children[0].value);
 }
 
 
