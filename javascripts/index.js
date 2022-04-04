@@ -144,20 +144,25 @@ const renderCraftFormPage = () => {
   const mediumDiv = document.createElement('div');
   const mediumInput = document.createElement('input');
   const mediumLabel = document.createElement('label');
+  const mediumSpan = document.createElement('span');
   const methodDiv = document.createElement('div');
   const methodInput = document.createElement('input');
   const methodLabel = document.createElement('label');
+  const methodSpan = document.createElement('span');
   // const secondRowDiv = document.createElement('div');
   const levelDiv = document.createElement('div');
   const levelInput = document.createElement('input');
   const levelLabel = document.createElement('label');
+  const levelSpan = document.createElement('span');
   const sourceDiv = document.createElement('div');
   const sourceInput = document.createElement('input');
   const sourceLabel = document.createElement('label');
+  const sourceSpan = document.createElement('span');
   // const thirdRowDiv = document.createElement('div');
   const sourceLinkDiv = document.createElement('div');
   const sourceLinkInput = document.createElement('input');
   const sourceLinkLabel = document.createElement('label');
+  const sourceLinkSpan = document.createElement('span');
   const addCraftBtn = document.createElement('input');
   
   // const addCraftBtn = document.createElement('input');
@@ -170,33 +175,43 @@ const renderCraftFormPage = () => {
   // secondRowDiv.className = 'row';
   // thirdRowDiv.className = 'row';
   mediumDiv.className = 'input-field col s6';
+  mediumLabel.className = 'active';
+  mediumSpan.className = 'helper-text';
   methodDiv.className = 'input-field col s6';
+  methodLabel.className = 'active';
+  methodSpan.className = 'helper-text';
   levelDiv.className = 'input-field col s6';
+  levelLabel.className = 'active';
+  levelSpan.className = 'helper-text';
   sourceDiv.className = 'input-field col s6';
+  sourceLabel.className = 'active';
+  sourceSpan.className = 'helper-text';
   sourceLinkDiv.className = 'input-field col s12';
+  sourceLinkLabel.className = 'active';
+  sourceLinkSpan.className = 'helper-text';
   addCraftBtn.className = 'waves-effect waves-light btn deep-orange lighten-3';
 
-  mediumInput.setAttribute('placeholder', 'painting, clay, paper, etc.');
+  // mediumInput.setAttribute('placeholder', 'painting, clay, paper, etc.');
   mediumInput.setAttribute('id', 'medium');
   mediumInput.setAttribute('type', 'text');
   mediumLabel.setAttribute('for', 'medium');
 
-  methodInput.setAttribute('placeholder', 'watercolor, freestyle, collage, etc.');
+  // methodInput.setAttribute('placeholder', 'watercolor, freestyle, collage, etc.');
   methodInput.setAttribute('id', 'method');
   methodInput.setAttribute('type', 'text');
   methodLabel.setAttribute('for', 'method');
 
-  levelInput.setAttribute('placeholder', 'easy, medium, hard');
+  // levelInput.setAttribute('placeholder', 'easy, medium, hard');
   levelInput.setAttribute('id', 'level');
   levelInput.setAttribute('type', 'text');
   levelLabel.setAttribute('for', 'level');
 
-  sourceInput.setAttribute('placeholder', 'YouTube, Google, etc.');
+  // sourceInput.setAttribute('placeholder', 'YouTube, Google, etc.');
   sourceInput.setAttribute('id', 'source');
   sourceInput.setAttribute('type', 'text');
   sourceLabel.setAttribute('for', 'source');
 
-  sourceLinkInput.setAttribute('placeholder', 'wwww.youtube.com/watch01');
+  // sourceLinkInput.setAttribute('placeholder', 'wwww.youtube.com/watch01');
   sourceLinkInput.setAttribute('id', 'source-link');
   sourceLinkInput.setAttribute('type', 'text');
   sourceLinkLabel.setAttribute('for', 'source-link');
@@ -211,18 +226,28 @@ const renderCraftFormPage = () => {
   levelLabel.innerText = 'Challenge Level';
   sourceLabel.innerText = 'Source';
   sourceLinkLabel.innerText = 'Source Link';
+  mediumSpan.innerText = 'painting, clay, paper, etc.';
+  methodSpan.innerText = 'watercolor, freestyle, collage, etc.';
+  levelSpan.innerText = 'easy, medium, hard';
+  sourceSpan.innerText = 'YouTube, Google, etc.';
+  sourceLinkSpan.innerText = 'wwww.youtube.com/watch01';
 
   mediumDiv.appendChild(mediumInput);
   mediumDiv.appendChild(mediumLabel);
+  mediumDiv.appendChild(mediumSpan);
   methodDiv.appendChild(methodInput);
   methodDiv.appendChild(methodLabel);
-
+  methodDiv.appendChild(methodSpan);
+  
   levelDiv.appendChild(levelInput);
   levelDiv.appendChild(levelLabel);
+  levelDiv.appendChild(levelSpan);
   sourceDiv.appendChild(sourceInput);
   sourceDiv.appendChild(sourceLabel);
+  sourceDiv.appendChild(sourceSpan);
   sourceLinkDiv.appendChild(sourceLinkInput);
   sourceLinkDiv.appendChild(sourceLinkLabel);
+  sourceLinkDiv.appendChild(sourceLinkSpan);
 
   formDiv.appendChild(form);
   // form.appendChild(firstRowDiv);
@@ -334,7 +359,7 @@ const submitFormEvent = (e) => {
   })
   .then(resp => resp.json())
   .then(craft => {
-    renderCraftListPage();
+    renderCraftFormPage();
     // crafts.push(craft);
     // console.log(craft)
   })
@@ -348,5 +373,6 @@ document.addEventListener('DOMContentLoaded', () => {
     homePageLinkEvent();
     craftPageLinkEvent();
     craftFormLinkEvent();
+    // favoritesLinkEvent();
 })
 
