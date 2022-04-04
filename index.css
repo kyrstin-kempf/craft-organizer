@@ -5,12 +5,16 @@ h1.title {
     text-align: center;
     color: #ffab91;
     font-size: 50px;
+    padding-top: 0px;
+    margin-top: 18px;
+    margin-bottom: 18px;
 }
 
 h2.add-craft-title {
     text-align: center;
-    font-size: 26px;
-    padding-bottom: 25px;
+    font-size: 18px;
+    margin-top: 10px;
+    padding-bottom: 20px;
 }
 
 /* label color */
@@ -43,7 +47,7 @@ input.waves-button-input{
 
 .btn {
     margin-top: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
 
 /* input::placeholder {
@@ -54,8 +58,37 @@ input.waves-button-input{
 .star {
     font-size: 20px;
     cursor: pointer;
+    text-align: center;
 }
 
 .active-star {
     color: #fde549;
 }
+
+.trash {
+    cursor: pointer;
+    text-align: center;
+}
+
+.delete {
+    text-align: center;
+    width: 10%;
+}
+
+.favorite {
+    text-align: center;
+    width: 10%;
+}
+
+.thMedium {
+    width: 20%;
+}
+
+.thMethod {
+    width: 20%;
+}
+
+tr td {
+    padding: 5px;
+    /* border: 1px solid black; */
+  }

@@ -9,10 +9,13 @@ let crafts = [];
 const fullStar = '★'
 const emptyStar = '☆'
 
+const trashCan = '🗑'
+
 /** Nodes */
 
 const mainDiv = () => document.getElementById('main');
-const homePageLink = () => document.getElementById('home-page-link');
+const homePageLink = () => document.getElementById('craft-list-link');
+// const homePageLink = () => document.getElementById('home-page-link');
 const craftListLink = () => document.getElementById('craft-list-link');
 const craftFormLink = () => document.getElementById('craft-form-link');
 const favoritesPageLink = () => document.getElementById('favorites-page-link');
@@ -21,9 +24,9 @@ const methodValue = () => document.getElementById('method');
 const levelValue = () => document.getElementById('level');
 const sourceValue = () => document.getElementById('source');
 const sourceLinkValue = () => document.getElementById('source-link');
-// const starSelection = () => document.getElementById('star');
+// const starSelection = () => document.getElementsByClassName('star');
 
-/* Templates */
+// Templates --------------------------------------------------------------------------------------------------------
 
 const craftTemplate = (craft) => {
   // return `
@@ -43,6 +46,7 @@ const craftTemplate = (craft) => {
   const tdLink = document.createElement('a');
   tdSourceLink.setAttribute('href', tdLink);
   tdSourceLink.classList.add('allLinks')
+  const tdTrash = document.createElement('td');
   // a.href = craft.link;
   // console.log(a)
   tdMedium.innerText = craft.medium;
@@ -53,6 +57,8 @@ const craftTemplate = (craft) => {
   tdSourceLink.innerText = craft.source;
   tdFavorite.innerText = emptyStar;
   tdFavorite.className = 'star';
+  tdTrash.innerText = trashCan;
+  tdTrash.className = 'trash';
   // tdSource.innerText = craft.source;
   // tdLink.innerText = craft.link;
   // tdSourceText.innerText = craft.source;
@@ -64,10 +70,11 @@ const craftTemplate = (craft) => {
   tr.appendChild(tdMethod)
   tr.appendChild(tdLevel)
   tr.appendChild(tdSource);
+  tr.appendChild(tdTrash);
   return tr;
 }
 
-/** Renderers **/
+// Renderers --------------------------------------------------------------------------------------------------------
 
 const renderHomePage = () => {
     mainDiv().innerHTML = ''
@@ -91,14 +98,22 @@ const renderHomePage = () => {
       const thMethod = document.createElement('th');
       const thLevel = document.createElement('th');
       const thSource = document.createElement('th');
-    const tbody = document.createElement('tbody');
-    h1.innerText = 'All Crafts'
-    h1.classList.add('title')  
+      const thTrash = document.createElement('th');
+      const tbody = document.createElement('tbody');
+      h1.innerText = 'All Crafts'
+      h1.classList.add('title')  
       thFavorites.innerText = 'Favorite';  
+      thFavorites.classList.add('favorite');  
       thMedium.innerText = 'Medium';  
+      thMedium.classList.add('thMedium');  
       thMethod.innerText = 'Method';
+      thMethod.classList.add('method');  
       thLevel.innerText = 'Level';
+      thLevel.classList.add('thLevel');  
       thSource.innerText = 'Source';  
+      thSource.classList.add('thSource');  
+      thTrash.innerText = 'Delete';  
+      thTrash.classList.add('delete');
     table.classList.add('highlight');
     // thSource.classList.add('link');
       tr.appendChild(thFavorites);
@@ -106,6 +121,7 @@ const renderHomePage = () => {
       tr.appendChild(thMethod);
       tr.appendChild(thLevel);
       tr.appendChild(thSource);
+      tr.appendChild(thTrash);
       thead.appendChild(tr);
       table.appendChild(tr);
     // console.log(table)
@@ -127,7 +143,6 @@ const renderCraftFormPage = () => {
   const h2 = document.createElement('h2')
   const formDiv = document.createElement('div');
   const form = document.createElement('form');
-  // const firstRowDiv = document.createElement('div');
   const mediumDiv = document.createElement('div');
   const mediumInput = document.createElement('input');
   const mediumLabel = document.createElement('label');
@@ -136,7 +151,6 @@ const renderCraftFormPage = () => {
   const methodInput = document.createElement('input');
   const methodLabel = document.createElement('label');
   const methodSpan = document.createElement('span');
-  // const secondRowDiv = document.createElement('div');
   const levelDiv = document.createElement('div');
   const levelInput = document.createElement('input');
   const levelLabel = document.createElement('label');
@@ -145,20 +159,14 @@ const renderCraftFormPage = () => {
   const sourceInput = document.createElement('input');
   const sourceLabel = document.createElement('label');
   const sourceSpan = document.createElement('span');
-  // const thirdRowDiv = document.createElement('div');
   const sourceLinkDiv = document.createElement('div');
   const sourceLinkInput = document.createElement('input');
   const sourceLinkLabel = document.createElement('label');
   const sourceLinkSpan = document.createElement('span');
   const addCraftBtn = document.createElement('input');
-  // const addCraftBtn = document.createElement('input');
   h1.className = 'title';
   h2.className = 'add-craft-title';
   formDiv.className = 'row';
-  // form.className = 'col s12';
-  // firstRowDiv.className = 'row';
-  // secondRowDiv.className = 'row';
-  // thirdRowDiv.className = 'row';
   mediumDiv.className = 'input-field col s6';
   mediumLabel.className = 'active';
   mediumSpan.className = 'helper-text';
@@ -261,26 +269,7 @@ const renderFavoritesPage = () => {
   mainDiv().appendChild(h1);
 }
 
-// const renderFullStar = (e) => {
-//   const star = e.target;
-//   mimicServerCall()
-//     .then(function ) {
-      
-//       if(star.innerText === emptyStar) {
-//         star.classList.add("activated-star");
-//         star.innerText = fullStar;
-//       }
-//       else {
-//         star.classList.remove("activated-star");
-//         star.innerText = emptyStar;
-//       }
-// }
-
-/** Events **/
-
-// when does it happen?
-// what will trigger this event?
-// what will happen when event is triggered?
+// Events --------------------------------------------------------------------------------------------------------
 
 // fetch() places action at the bottom of the stack, use async to load in order
 
@@ -304,7 +293,7 @@ const homePageLinkEvent = () => {
   homePageLink().addEventListener('click', (e) => 
   {
      e.preventDefault();
-     renderHomePage(); 
+     renderCraftListPage(); 
   })  
 } 
 
@@ -371,41 +360,82 @@ const favoritesPageLinkEvent = () => {
   })
 }
 
-// const favoriteButtonEvent = () => {
-//   starSelection().addEventListener('click', (e) => {
-//     e.preventDefault();
-//     renderFullStar();
+// Favorite Ideas with Star --------------------------------------------------------------------------------------------------------
+const favoriteStars = document.getElementsByClassName("star");
+console.log(favoriteStars);
+
+// for (const starSymbol of favoriteStars) {
+//   starSymbol.addEventListener("click", (e) => {
+//     console.log(e);
+//     if(starSymbol.innerText === emptyStar) {
+//       starSymbol.classList.add("activated-star");
+//       starSymbol.innerText = fullStar;
+//     }
+//     else {
+//       starSymbol.classList.remove("activated-star");
+//       starSymbol.innerText = emptyStar;
+//     }
 //   })
 // }
 
-const selectStar = document.querySelectorAll('.star');
-console.log(selectStar);
+// Array.from(favoriteStars).forEach(starSelect => starSelect.addEventListener("click", likeStar));
 
-selectStar.forEach(selectStar => selectStar.addEventListener("click", likeStar))
+// function likeStar() {
+//   if(favoriteStar.innerText === emptyStar) {
+//     favoriteStar.classList.add("activated-star");
+//     favoriteStar.innerText = fullStar;
+//   }
+//   else {
+//     favoriteStar.classList.remove("activated-star");
+//     favoriteStar.innerText = emptyStar;
+//   } 
+// }  
 
-function likeStar(event) {
-  const favoriteStar = event.target;
-  favoriteCraftSelction()
-    .then(function(e){
-      if(favoriteStar.innerText === emptyStar) {
-        favoriteStar.classList.add("activated-star");
-        favoriteStar.innerText = fullStar;
-      }
-      else {
-        favoriteStar.classList.remove("activated-star");
-        favoriteStar.innerText = emptyStar;
-      } 
-    })   
-}
+// function likeCallback(e) {
+//   const star = e.target;
+//   if(star.innerText === emptyStar) {
+//     star.classList.add("activated-star");
+//     star.innerText = fullStar;
+//   }
+//   else {
+//     star.classList.remove("activated-star");
+//     star.innerText = emptyStar;
+//   } 
+// }
 
+// for (const starSymbol of favoriteStars) {
+//   starSymbol.addEventListener("click", likeCallback);
+// }
+
+// const favoriteButtonEvent = () => {
+//   starSelection().addEventListener('click', (e) => {
+//     console.log(e);
+//     // e.preventDefault();
+//     // renderFullStar();
+//   })
+// }
+
+// selectStar.forEach(selectStar => selectStar.addEventListener("click", likeStar))
+
+// function likeStar() {
+//   if(favoriteStar.innerText === emptyStar) {
+//     favoriteStar.classList.add("activated-star");
+//     favoriteStar.innerText = fullStar;
+//   }
+//   else {
+//     favoriteStar.classList.remove("activated-star");
+//     favoriteStar.innerText = emptyStar;
+//   } 
+// }  
+
+// --------------------------------------------------------------------------------------------------------
 
 /** When DOM Loads **/
 
 document.addEventListener('DOMContentLoaded', () => {
-    // renderHomePage();
+    renderHomePage();
     homePageLinkEvent();
     craftPageLinkEvent();
     craftFormLinkEvent();
     favoritesPageLinkEvent();
-})
-
+});
