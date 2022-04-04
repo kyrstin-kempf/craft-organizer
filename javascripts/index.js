@@ -6,44 +6,24 @@ const localURL = 'http://localhost:3000';
 
 let crafts = [];
 
+const fullStar = '★'
+const emptyStar = '☆'
+
 /** Nodes */
 
 const mainDiv = () => document.getElementById('main');
 const homePageLink = () => document.getElementById('home-page-link');
 const craftListLink = () => document.getElementById('craft-list-link');
 const craftFormLink = () => document.getElementById('craft-form-link');
+const favoritesPageLink = () => document.getElementById('favorites-page-link');
 const mediumValue = () => document.getElementById('medium');
 const methodValue = () => document.getElementById('method');
 const levelValue = () => document.getElementById('level');
 const sourceValue = () => document.getElementById('source');
 const sourceLinkValue = () => document.getElementById('source-link');
+// const starSelection = () => document.getElementById('star');
 
 /* Templates */
-
-// const homePageTemplate =  () => {
-//     return `
-//     <h1 class="center-align">Add craft idea</h1>
-//     `
-// }
-
-// const craftListTemplate = () => {
-//     return `
-//     <h1 class="center">All Crafts</h1>
-//     <table class="highlight">
-//       <thead>
-//         <tr>
-//             <th>Medium</th>
-//             <th>Method</th>
-//             <th>Challege Level</th>
-//             <th>Video Tourturial</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         ${ renderCrafts() }
-//       </tbody>
-//     </table>
-//     `
-// }
 
 const craftTemplate = (craft) => {
   // return `
@@ -54,6 +34,7 @@ const craftTemplate = (craft) => {
   //   <td><a href=${ craft.link }>${ craft.source }</a></td>
   // </tr>`
   const tr = document.createElement('tr');
+  const tdFavorite = document.createElement('td');
   const tdMedium = document.createElement('td');
   const tdMethod = document.createElement('td');
   const tdLevel = document.createElement('td');
@@ -70,12 +51,15 @@ const craftTemplate = (craft) => {
   tdSource.appendChild(tdSourceLink);
   tdLink.innerText = craft.link;
   tdSourceLink.innerText = craft.source;
+  tdFavorite.innerText = emptyStar;
+  tdFavorite.className = 'star';
   // tdSource.innerText = craft.source;
   // tdLink.innerText = craft.link;
   // tdSourceText.innerText = craft.source;
   // tdLink.setAttribute('href', theLink)
   // tdSource.appendChild(tdSourceText);
   // tdLink.href = craft.link;
+  tr.appendChild(tdFavorite);
   tr.appendChild(tdMedium)
   tr.appendChild(tdMethod)
   tr.appendChild(tdLevel)
@@ -102,6 +86,7 @@ const renderHomePage = () => {
     const table = document.createElement('table');
     const tr = document.createElement('tr');
     const thead = document.createElement('thead');
+      const thFavorites = document.createElement('th');
       const thMedium = document.createElement('th');
       const thMethod = document.createElement('th');
       const thLevel = document.createElement('th');
@@ -109,12 +94,14 @@ const renderHomePage = () => {
     const tbody = document.createElement('tbody');
     h1.innerText = 'All Crafts'
     h1.classList.add('title')  
+      thFavorites.innerText = 'Favorite';  
       thMedium.innerText = 'Medium';  
       thMethod.innerText = 'Method';
       thLevel.innerText = 'Level';
       thSource.innerText = 'Source';  
     table.classList.add('highlight');
     // thSource.classList.add('link');
+      tr.appendChild(thFavorites);
       tr.appendChild(thMedium);
       tr.appendChild(thMethod);
       tr.appendChild(thLevel);
@@ -265,6 +252,30 @@ const renderCraftFormPage = () => {
   mainDiv().appendChild(formDiv);
 }
 
+const renderFavoritesPage = () => {
+  mainDiv().innerHTML = ''
+  const h1 = document.createElement('h1');
+  h1.classList.add('title');
+  h1.innerText = 'Favorites'
+
+  mainDiv().appendChild(h1);
+}
+
+// const renderFullStar = (e) => {
+//   const star = e.target;
+//   mimicServerCall()
+//     .then(function ) {
+      
+//       if(star.innerText === emptyStar) {
+//         star.classList.add("activated-star");
+//         star.innerText = fullStar;
+//       }
+//       else {
+//         star.classList.remove("activated-star");
+//         star.innerText = emptyStar;
+//       }
+// }
+
 /** Events **/
 
 // when does it happen?
@@ -314,14 +325,6 @@ const craftFormLinkEvent = () => {
   })
 }
 
-const favoritesLinkEvent = () => {
-  favoritesLink().addEventListener('click', (e) => 
-  {
-    e.preventDefault();
-    renderFavoritesPage();
-  })
-}
-
 const submitFormEvent = (e) => {
   e.preventDefault();
   // console.log(e.target.children);
@@ -361,6 +364,40 @@ const submitFormEvent = (e) => {
   })
 }
 
+const favoritesPageLinkEvent = () => {
+  favoritesPageLink().addEventListener('click', (e) => {
+    // e.preventDefault();
+    renderFavoritesPage(e);
+  })
+}
+
+// const favoriteButtonEvent = () => {
+//   starSelection().addEventListener('click', (e) => {
+//     e.preventDefault();
+//     renderFullStar();
+//   })
+// }
+
+const selectStar = document.querySelectorAll('.star');
+console.log(selectStar);
+
+selectStar.forEach(selectStar => selectStar.addEventListener("click", likeStar))
+
+function likeStar(event) {
+  const favoriteStar = event.target;
+  favoriteCraftSelction()
+    .then(function(e){
+      if(favoriteStar.innerText === emptyStar) {
+        favoriteStar.classList.add("activated-star");
+        favoriteStar.innerText = fullStar;
+      }
+      else {
+        favoriteStar.classList.remove("activated-star");
+        favoriteStar.innerText = emptyStar;
+      } 
+    })   
+}
+
 
 /** When DOM Loads **/
 
@@ -369,6 +406,6 @@ document.addEventListener('DOMContentLoaded', () => {
     homePageLinkEvent();
     craftPageLinkEvent();
     craftFormLinkEvent();
-    favoritesLinkEvent();
+    favoritesPageLinkEvent();
 })
 

@@ -1,0 +1,61 @@
+a.allLinks {
+    color: #ffab91 !important;
+}
+h1.title {
+    text-align: center;
+    color: #ffab91;
+    font-size: 50px;
+}
+
+h2.add-craft-title {
+    text-align: center;
+    font-size: 26px;
+    padding-bottom: 25px;
+}
+
+/* label color */
+.input-field label.active {
+    color: #000;
+    font-size: 20px;
+}
+
+div.input-field.col.s6 input[type=text]:focus + label {
+    color: #ffab91;
+}
+
+div.input-field.col.s6 input[type=text]:focus {
+    border-bottom: 1px solid #ffab91;
+    box-shadow: none;
+}
+
+div.input-field.col.s12 input[type=text]:focus + label {
+    color: #ffab91;
+}
+
+div.input-field.col.s12 input[type=text]:focus {
+    border-bottom: 1px solid #ffab91;
+    box-shadow: none;
+}
+
+input.waves-button-input{
+    color: white;
+}
+
+.btn {
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+/* input::placeholder {
+    font-size: 14px;
+} */
+
+/** Adjusting favorite star **/
+.star {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.active-star {
+    color: #fde549;
+}
