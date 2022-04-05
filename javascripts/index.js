@@ -84,10 +84,10 @@ const renderHomePage = () => {
 
     mainDiv().appendChild(h1);
   }
-  
-  const renderCraftListPage = async () => {
+
+  const renderCraftListPage = () => {
     // mainDiv().innerHTML = craftListTemplate();
-    await loadCrafts();
+    // await loadCrafts();
     mainDiv().innerHTML = ''
     const h1 = document.createElement('h1');
     const table = document.createElement('table');
@@ -128,7 +128,15 @@ const renderHomePage = () => {
     crafts.forEach(craft => tbody.appendChild(craftTemplate(craft)))
     table.appendChild(tbody);
     mainDiv().appendChild(h1);
-    mainDiv().appendChild(table);  
+    mainDiv().appendChild(table); 
+
+    document.querySelectorAll('.star').forEach(s => {
+      s.addEventListener('click', (e) => {
+        console.log(e.target);
+        e.target.innerText = e.target.innerText === emptyStar ? fullStar : emptyStar;
+        // e.target.innerText = fullStar;
+      })
+    }); 
 }
 
 const renderCrafts = () => {
@@ -273,21 +281,28 @@ const renderFavoritesPage = () => {
 
 // fetch() places action at the bottom of the stack, use async to load in order
 
-// const loadCrafts = () => {
-//   fetch(localURL + '/crafts')
-//   .then(resp => resp.json())
-//   .then(data => crafts = data)
-// }
-
-const loadCrafts = async () => {
-  // console.log('a')
-  const resp = await fetch(localURL + '/crafts')
-  // console.log('b')
-  const data = await resp.json(); 
-  // console.log('c')
-  crafts = data;
-  // console.log('d')
+const loadCrafts = () => {
+  fetch(localURL + '/crafts')
+  .then(resp => resp.json())
+  .then(data => {
+    crafts = data
+    renderHomePage();
+    homePageLinkEvent();
+    craftPageLinkEvent();
+    craftFormLinkEvent();
+    favoritesPageLinkEvent();
+  })
 }
+
+// const loadCrafts = async () => {
+//   // console.log('a')
+//   const resp = await fetch(localURL + '/crafts')
+//   // console.log('b')
+//   const data = await resp.json(); 
+//   // console.log('c')
+//   crafts = data;
+//   // console.log('d')
+// }
 
 const homePageLinkEvent = () => {
   homePageLink().addEventListener('click', (e) => 
@@ -317,7 +332,7 @@ const craftFormLinkEvent = () => {
 const submitFormEvent = (e) => {
   e.preventDefault();
   // console.log(e.target.children);
-  const [medium, method, level, source, sourceLink] = e.target.children;
+  // const [medium, method, level, source, sourceLink] = e.target.children;
   // const medium = e.target.children[0]
   // const method = e.target.children[1]
   // const level = e.target.children[2]
@@ -347,8 +362,8 @@ const submitFormEvent = (e) => {
   })
   .then(resp => resp.json())
   .then(craft => {
+    crafts.push(craft);
     renderCraftFormPage();
-    // crafts.push(craft);
     // console.log(craft)
   })
 }
@@ -433,9 +448,10 @@ console.log(favoriteStars);
 /** When DOM Loads **/
 
 document.addEventListener('DOMContentLoaded', () => {
-    renderHomePage();
-    homePageLinkEvent();
-    craftPageLinkEvent();
-    craftFormLinkEvent();
-    favoritesPageLinkEvent();
+    loadCrafts();  
+    // renderHomePage();
+    // homePageLinkEvent();
+    // craftPageLinkEvent();
+    // craftFormLinkEvent();
+    // favoritesPageLinkEvent();
 });
