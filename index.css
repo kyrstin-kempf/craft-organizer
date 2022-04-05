@@ -1,6 +1,7 @@
 a.allLinks {
     color: #ffab91 !important;
 }
+
 h1.title {
     text-align: center;
     color: #ffab91;
@@ -50,19 +51,11 @@ input.waves-button-input{
     margin-bottom: 0px;
 }
 
-/* input::placeholder {
-    font-size: 14px;
-} */
-
 /** Adjusting favorite star **/
 .star {
     font-size: 20px;
     cursor: pointer;
     text-align: center;
-}
-
-.active-star {
-    color: #fde549;
 }
 
 .trash {
@@ -90,5 +83,4 @@ input.waves-button-input{
 
 tr td {
     padding: 5px;
-    /* border: 1px solid black; */
-  }
+}
