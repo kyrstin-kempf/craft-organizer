@@ -98,10 +98,14 @@ const craftTemplate = (craft) => {
 
     document.querySelectorAll('.star').forEach(s => {
       s.addEventListener('click', (e) => {
-        console.log(e.target);
         e.target.innerText = e.target.innerText === emptyStar ? fullStar : emptyStar;
       })
     }); 
+
+    document.querySelectorAll('.trash').forEach(tc => {
+      tc.addEventListener('click', removeCraftEvent)
+    }); 
+
 }
 
 const renderCrafts = () => {
@@ -213,6 +217,7 @@ const renderCraftFormPage = () => {
 
 // Events --------------------------------------------------------------------------------------------------------
 
+// FETCH
 const loadCrafts = () => {
   fetch(localURL + '/crafts')
   .then(resp => resp.json())
@@ -263,6 +268,22 @@ const submitFormEvent = (e) => {
   .then(craft => {
     crafts.push(craft);
     renderCraftListPage();
+  })
+}
+
+// DELETE CRAFT IDEA
+const removeCraftEvent = (e) => {
+  e.preventDefault();
+  fetch('http://localhost:3000/crafts', {
+    method: 'DELETE',
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+  })
+  .then(resp => resp.json())
+  .then(craft => {
+    crafts.pop(craft);
   })
 }
 
