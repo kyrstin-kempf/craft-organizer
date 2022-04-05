@@ -284,6 +284,7 @@ const removeCraftEvent = (e) => {
   .then(resp => resp.json())
   .then(craft => {
     crafts.pop(craft);
+    renderCraftListPage();
   })
 }
 
