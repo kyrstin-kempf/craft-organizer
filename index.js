@@ -22,6 +22,7 @@ const sourceLinkValue = () => document.getElementById('source-link');
 
 // Templates --------------------------------------------------------------------------------------------------------
 
+// PULLING DATA FROM DB.JSON INTO TABLE DATA
 const craftTemplate = (craft) => {
   const tr = document.createElement('tr');
     const tdFavorite = document.createElement('td');
@@ -55,63 +56,67 @@ const craftTemplate = (craft) => {
 
 // Renderers --------------------------------------------------------------------------------------------------------
 
-  const renderCraftListPage = () => {
-    mainDiv().innerHTML = ''
-    const h1 = document.createElement('h1');
-    const table = document.createElement('table');
-    const tr = document.createElement('tr');
-    const thead = document.createElement('thead');
-      const thFavorites = document.createElement('th');
-      const thMedium = document.createElement('th');
-      const thMethod = document.createElement('th');
-      const thLevel = document.createElement('th');
-      const thSource = document.createElement('th');
-      const thTrash = document.createElement('th');
-      const tbody = document.createElement('tbody');
-    h1.innerText = 'All Crafts'
-    h1.classList.add('title')  
-    thFavorites.innerText = 'Favorite';  
-    thFavorites.classList.add('favorite');  
-    thMedium.innerText = 'Medium';  
-    thMedium.classList.add('thMedium');  
-    thMethod.innerText = 'Method';
-    thMethod.classList.add('method');  
-    thLevel.innerText = 'Level';
-    thLevel.classList.add('thLevel');  
-    thSource.innerText = 'Source';  
-    thSource.classList.add('thSource');  
-    thTrash.innerText = 'Delete';  
-    thTrash.classList.add('delete');
-    table.classList.add('highlight');
-      tr.appendChild(thFavorites);
-      tr.appendChild(thMedium);
-      tr.appendChild(thMethod);
-      tr.appendChild(thLevel);
-      tr.appendChild(thSource);
-      tr.appendChild(thTrash);
-    thead.appendChild(tr);
-    table.appendChild(tr);
-    crafts.forEach(craft => tbody.appendChild(craftTemplate(craft)))
-    table.appendChild(tbody);
-    mainDiv().appendChild(h1);
-    mainDiv().appendChild(table); 
+// CRAFT LIST TABLE
+const renderCraftListPage = () => {
+  mainDiv().innerHTML = ''
+  const h1 = document.createElement('h1');
+  const table = document.createElement('table');
+  const tr = document.createElement('tr');
+  const thead = document.createElement('thead');
+    const thFavorites = document.createElement('th');
+    const thMedium = document.createElement('th');
+    const thMethod = document.createElement('th');
+    const thLevel = document.createElement('th');
+    const thSource = document.createElement('th');
+    const thTrash = document.createElement('th');
+    const tbody = document.createElement('tbody');
+  h1.innerText = 'All Crafts'
+  h1.classList.add('title')  
+  thFavorites.innerText = 'Favorite';  
+  thFavorites.classList.add('favorite');  
+  thMedium.innerText = 'Medium';  
+  thMedium.classList.add('thMedium');  
+  thMethod.innerText = 'Method';
+  thMethod.classList.add('method');  
+  thLevel.innerText = 'Level';
+  thLevel.classList.add('thLevel');  
+  thSource.innerText = 'Source';  
+  thSource.classList.add('thSource');  
+  thTrash.innerText = 'Delete';  
+  thTrash.classList.add('delete');
+  table.classList.add('highlight');
+    tr.appendChild(thFavorites);
+    tr.appendChild(thMedium);
+    tr.appendChild(thMethod);
+    tr.appendChild(thLevel);
+    tr.appendChild(thSource);
+    tr.appendChild(thTrash);
+  thead.appendChild(tr);
+  table.appendChild(tr);
+  crafts.forEach(craft => tbody.appendChild(craftTemplate(craft)))
+  table.appendChild(tbody);
+  mainDiv().appendChild(h1);
+  mainDiv().appendChild(table); 
 
-    document.querySelectorAll('.star').forEach(s => {
-      s.addEventListener('click', (e) => {
-        e.target.innerText = e.target.innerText === emptyStar ? fullStar : emptyStar;
-      })
-    }); 
+// STARRED OR FAVORITE CRAFT 
+  document.querySelectorAll('.star').forEach(s => {
+    s.addEventListener('click', (e) => {
+      e.target.innerText = e.target.innerText === emptyStar ? fullStar : emptyStar;
+    })
+  }); 
 
-    document.querySelectorAll('.trash').forEach(tc => {
-      tc.addEventListener('click', removeCraftEvent)
-    }); 
-
+// DELETE CRAFT IDEA
+  document.querySelectorAll('.trash').forEach(tc => {
+    tc.addEventListener('click', removeCraftEvent)
+  }); 
 }
 
+// MAP THROUGH EACH CRAFT AND APPLY TO CRAFT TABLE DATA FORMAT
 const renderCrafts = () => {
     return crafts.map(craft => craftTemplate(craft));
 }
 
+// ADD CRAFT FORM
 const renderCraftFormPage = () => {
   mainDiv().innerHTML = ''
   const h1 = document.createElement('h1');
@@ -217,7 +222,7 @@ const renderCraftFormPage = () => {
 
 // Events --------------------------------------------------------------------------------------------------------
 
-// FETCH
+// FETCH CRAFTS FROM DB.JSON
 const loadCrafts = () => {
   fetch(localURL + '/crafts')
   .then(resp => resp.json())
@@ -250,7 +255,7 @@ const craftFormLinkEvent = () => {
 // SUBMIT FORM 
 const submitFormEvent = (e) => {
   e.preventDefault();
-  fetch('http://localhost:3000/crafts', {
+  fetch(localURL + '/crafts', {
     method: 'POST',
     headers: {
       "Accept": "application/json",
@@ -272,14 +277,10 @@ const submitFormEvent = (e) => {
 }
 
 // DELETE CRAFT IDEA
-const removeCraftEvent = (e) => {
+const removeCraftEvent = (e, id) => {
   e.preventDefault();
-  fetch('http://localhost:3000/crafts', {
+  fetch(`http://localhost:3000/crafts/` + id, {
     method: 'DELETE',
-    headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    },
   })
   .then(resp => resp.json())
   .then(craft => {

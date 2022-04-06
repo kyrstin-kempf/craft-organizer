@@ -1,4 +1,4 @@
-# Craft Organizer & Filter
+# Craft Compiler
 description - about and purpose
 
 ### Overview
