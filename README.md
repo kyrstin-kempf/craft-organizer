@@ -1,5 +1,5 @@
-# Craft Compiler
-The Craft Compiler is a **minimal viable product (MVP)** that allows the user to input details of a craft, star favorite crafts, and delete crafts from the DOM.
+# Craft Organizer
+The Craft Organizer is a **minimal viable product (MVP)** that allows the user to input details of a craft, star favorite crafts, and delete crafts from the DOM.
 
 This way, links to craft ideas can be easily found and referened based on medium, method, and challenge level with corresponding source link.
 
@@ -21,6 +21,3 @@ This way, links to craft ideas can be easily found and referened based on medium
 * Fork and clone
 * Run json server for db.json
 * Open index.html in the browser
-
-
-

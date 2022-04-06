@@ -181,7 +181,7 @@ const renderCraftFormPage = () => {
   addCraftBtn.setAttribute('type', 'submit');
   addCraftBtn.setAttribute('value', 'Add Craft');
   h1.innerText = 'Add Craft'; 
-  h2.innerText = 'Complete the form below to add a craft to the Craft Compiler.';
+  h2.innerText = 'Complete the form below to add a craft to the Craft Organizer.';
   mediumLabel.innerText = 'Medium';
     mediumSpan.innerText = 'painting, clay, paper, etc.';
   methodLabel.innerText = 'Method';
