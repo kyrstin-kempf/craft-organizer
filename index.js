@@ -14,6 +14,7 @@ const trashCan = '🗑'
 const mainDiv = () => document.getElementById('main');
 const homePageLink = () => document.getElementById('craft-list-link');
 const craftFormLink = () => document.getElementById('craft-form-link');
+const favoriteValue = () => document.getElementById('favorite');
 const mediumValue = () => document.getElementById('medium');
 const methodValue = () => document.getElementById('method');
 const levelValue = () => document.getElementById('level');
@@ -25,26 +26,28 @@ const sourceLinkValue = () => document.getElementById('source-link');
 // PULLING DATA FROM DB.JSON INTO TABLE DATA
 const craftTemplate = (craft) => {
   const tr = document.createElement('tr');
-    const tdFavorite = document.createElement('td');
-    const tdMedium = document.createElement('td');
-    const tdMethod = document.createElement('td');
-    const tdLevel = document.createElement('td');
-    const tdSource = document.createElement('td');
-    const tdSourceLink = document.createElement('a');
-    const tdLink = document.createElement('a');
-      tdSourceLink.setAttribute('href', tdLink);
-      tdSourceLink.classList.add('allLinks')
-      tdSource.appendChild(tdSourceLink);
-    const tdTrash = document.createElement('td');
+  const tdFavorite = document.createElement('td');
+  const tdMedium = document.createElement('td');
+  const tdMethod = document.createElement('td');
+  const tdLevel = document.createElement('td');
+  const tdSource = document.createElement('td');
+  const tdSourceLink = document.createElement('a');
+  const tdLink = document.createElement('a');
+  const tdTrash = document.createElement('td');
+  tdSourceLink.setAttribute('href', tdLink);
+  tdSourceLink.classList.add('allLinks')
+  tdSource.appendChild(tdSourceLink);
   tdMedium.innerText = craft.medium;
   tdMethod.innerText = craft.method;
   tdLevel.innerText = craft.level;
   tdLink.innerText = craft.link;
   tdSourceLink.innerText = craft.source;
   tdFavorite.innerText = emptyStar;
-    tdFavorite.className = 'star';
+  tdFavorite.className = 'star';
+  tdFavorite.id = 'favorite' 
   tdTrash.innerText = trashCan;
-    tdTrash.className = 'trash';
+  tdTrash.className = 'trash';
+  tdTrash.id = craft.id;
   tr.appendChild(tdFavorite);
   tr.appendChild(tdMedium)
   tr.appendChild(tdMethod)
@@ -63,13 +66,13 @@ const renderCraftListPage = () => {
   const table = document.createElement('table');
   const tr = document.createElement('tr');
   const thead = document.createElement('thead');
-    const thFavorites = document.createElement('th');
-    const thMedium = document.createElement('th');
-    const thMethod = document.createElement('th');
-    const thLevel = document.createElement('th');
-    const thSource = document.createElement('th');
-    const thTrash = document.createElement('th');
-    const tbody = document.createElement('tbody');
+  const thFavorites = document.createElement('th');
+  const thMedium = document.createElement('th');
+  const thMethod = document.createElement('th');
+  const thLevel = document.createElement('th');
+  const thSource = document.createElement('th');
+  const thTrash = document.createElement('th');
+  const tbody = document.createElement('tbody');
   h1.innerText = 'All Crafts'
   h1.classList.add('title')  
   thFavorites.innerText = 'Favorite';  
@@ -85,12 +88,12 @@ const renderCraftListPage = () => {
   thTrash.innerText = 'Delete';  
   thTrash.classList.add('delete');
   table.classList.add('highlight');
-    tr.appendChild(thFavorites);
-    tr.appendChild(thMedium);
-    tr.appendChild(thMethod);
-    tr.appendChild(thLevel);
-    tr.appendChild(thSource);
-    tr.appendChild(thTrash);
+  tr.appendChild(thFavorites);
+  tr.appendChild(thMedium);
+  tr.appendChild(thMethod);
+  tr.appendChild(thLevel);
+  tr.appendChild(thSource);
+  tr.appendChild(thTrash);
   thead.appendChild(tr);
   table.appendChild(tr);
   crafts.forEach(craft => tbody.appendChild(craftTemplate(craft)))
@@ -99,11 +102,11 @@ const renderCraftListPage = () => {
   mainDiv().appendChild(table); 
 
 // STARRED OR FAVORITE CRAFT 
-  document.querySelectorAll('.star').forEach(s => {
-    s.addEventListener('click', (e) => {
-      e.target.innerText = e.target.innerText === emptyStar ? fullStar : emptyStar;
-    })
-  }); 
+document.querySelectorAll('.star').forEach(s => {
+  s.addEventListener('click', (e) => {
+    e.target.innerText = e.target.innerText === emptyStar ? fullStar : emptyStar;
+  })
+}); 
 
 // DELETE CRAFT IDEA
   document.querySelectorAll('.trash').forEach(tc => {
@@ -124,89 +127,89 @@ const renderCraftFormPage = () => {
   const formDiv = document.createElement('div');
   const form = document.createElement('form');
   const mediumDiv = document.createElement('div');
-    const mediumInput = document.createElement('input');
-    const mediumLabel = document.createElement('label');
-    const mediumSpan = document.createElement('span');
+  const mediumInput = document.createElement('input');
+  const mediumLabel = document.createElement('label');
+  const mediumSpan = document.createElement('span');
   const methodDiv = document.createElement('div');
-    const methodInput = document.createElement('input');
-    const methodLabel = document.createElement('label');
-    const methodSpan = document.createElement('span');
+  const methodInput = document.createElement('input');
+  const methodLabel = document.createElement('label');
+  const methodSpan = document.createElement('span');
   const levelDiv = document.createElement('div');
-    const levelInput = document.createElement('input');
-    const levelLabel = document.createElement('label');
-    const levelSpan = document.createElement('span');
+  const levelInput = document.createElement('input');
+  const levelLabel = document.createElement('label');
+  const levelSpan = document.createElement('span');
   const sourceDiv = document.createElement('div');
-    const sourceInput = document.createElement('input');
-    const sourceLabel = document.createElement('label');
-    const sourceSpan = document.createElement('span');
+  const sourceInput = document.createElement('input');
+  const sourceLabel = document.createElement('label');
+  const sourceSpan = document.createElement('span');
   const sourceLinkDiv = document.createElement('div');
-    const sourceLinkInput = document.createElement('input');
-    const sourceLinkLabel = document.createElement('label');
-    const sourceLinkSpan = document.createElement('span');
+  const sourceLinkInput = document.createElement('input');
+  const sourceLinkLabel = document.createElement('label');
+  const sourceLinkSpan = document.createElement('span');
   const addCraftBtn = document.createElement('input');
   h1.className = 'title';
   h2.className = 'add-craft-title';
   formDiv.className = 'row';
   mediumDiv.className = 'input-field col s6';
-    mediumLabel.className = 'active';
-    mediumSpan.className = 'helper-text';
+  mediumLabel.className = 'active';
+  mediumSpan.className = 'helper-text';
   methodDiv.className = 'input-field col s6';
-    methodLabel.className = 'active';
-    methodSpan.className = 'helper-text';
+  methodLabel.className = 'active';
+  methodSpan.className = 'helper-text';
   levelDiv.className = 'input-field col s6';
-    levelLabel.className = 'active';
-    levelSpan.className = 'helper-text';
+  levelLabel.className = 'active';
+  levelSpan.className = 'helper-text';
   sourceDiv.className = 'input-field col s6';
-    sourceLabel.className = 'active';
-    sourceSpan.className = 'helper-text';
+  sourceLabel.className = 'active';
+  sourceSpan.className = 'helper-text';
   sourceLinkDiv.className = 'input-field col s12';
-    sourceLinkLabel.className = 'active';
-    sourceLinkSpan.className = 'helper-text';
+  sourceLinkLabel.className = 'active';
+  sourceLinkSpan.className = 'helper-text';
   addCraftBtn.className = 'waves-effect waves-light btn deep-orange lighten-3';
   mediumInput.setAttribute('id', 'medium');
-    mediumInput.setAttribute('type', 'text');
-    mediumLabel.setAttribute('for', 'medium');
+  mediumInput.setAttribute('type', 'text');
+  mediumLabel.setAttribute('for', 'medium');
   methodInput.setAttribute('id', 'method');
-    methodInput.setAttribute('type', 'text');
-    methodLabel.setAttribute('for', 'method');
+  methodInput.setAttribute('type', 'text');
+  methodLabel.setAttribute('for', 'method');
   levelInput.setAttribute('id', 'level');
-    levelInput.setAttribute('type', 'text');
-    levelLabel.setAttribute('for', 'level');
+  levelInput.setAttribute('type', 'text');
+  levelLabel.setAttribute('for', 'level');
   sourceInput.setAttribute('id', 'source');
-    sourceInput.setAttribute('type', 'text');
-    sourceLabel.setAttribute('for', 'source');
+  sourceInput.setAttribute('type', 'text');
+  sourceLabel.setAttribute('for', 'source');
   sourceLinkInput.setAttribute('id', 'source-link');
-    sourceLinkInput.setAttribute('type', 'text');
-    sourceLinkLabel.setAttribute('for', 'source-link');
+  sourceLinkInput.setAttribute('type', 'text');
+  sourceLinkLabel.setAttribute('for', 'source-link');
   addCraftBtn.setAttribute('type', 'submit');
   addCraftBtn.setAttribute('value', 'Add Craft');
   h1.innerText = 'Add Craft'; 
   h2.innerText = 'Complete the form below to add a craft to the Craft Organizer.';
   mediumLabel.innerText = 'Medium';
-    mediumSpan.innerText = 'painting, clay, paper, etc.';
+  mediumSpan.innerText = 'painting, clay, paper, etc.';
   methodLabel.innerText = 'Method';
-    methodSpan.innerText = 'watercolor, freestyle, collage, etc.';
+  methodSpan.innerText = 'watercolor, freestyle, collage, etc.';
   levelLabel.innerText = 'Challenge Level';
-    levelSpan.innerText = 'easy, medium, hard';
+  levelSpan.innerText = 'easy, medium, hard';
   sourceLabel.innerText = 'Source';
-    sourceSpan.innerText = 'YouTube, Google, etc.';
+  sourceSpan.innerText = 'YouTube, Google, etc.';
   sourceLinkLabel.innerText = 'Source Link';
-    sourceLinkSpan.innerText = 'wwww.youtube.com/watch01';
+  sourceLinkSpan.innerText = 'wwww.youtube.com/watch01';
   mediumDiv.appendChild(mediumInput);
-    mediumDiv.appendChild(mediumLabel);
-    mediumDiv.appendChild(mediumSpan);
+  mediumDiv.appendChild(mediumLabel);
+  mediumDiv.appendChild(mediumSpan);
   methodDiv.appendChild(methodInput);
-    methodDiv.appendChild(methodLabel);
-    methodDiv.appendChild(methodSpan);
+  methodDiv.appendChild(methodLabel);
+  methodDiv.appendChild(methodSpan);
   levelDiv.appendChild(levelInput);
-    levelDiv.appendChild(levelLabel);
-    levelDiv.appendChild(levelSpan);
+  levelDiv.appendChild(levelLabel);
+  levelDiv.appendChild(levelSpan);
   sourceDiv.appendChild(sourceInput);
-    sourceDiv.appendChild(sourceLabel);
-    sourceDiv.appendChild(sourceSpan);
+  sourceDiv.appendChild(sourceLabel);
+  sourceDiv.appendChild(sourceSpan);
   sourceLinkDiv.appendChild(sourceLinkInput);
-    sourceLinkDiv.appendChild(sourceLinkLabel);
-    sourceLinkDiv.appendChild(sourceLinkSpan);
+  sourceLinkDiv.appendChild(sourceLinkLabel);
+  sourceLinkDiv.appendChild(sourceLinkSpan);
   formDiv.appendChild(form);
   form.appendChild(mediumDiv);
   form.appendChild(methodDiv);
@@ -277,14 +280,20 @@ const submitFormEvent = (e) => {
 }
 
 // DELETE CRAFT IDEA
-const removeCraftEvent = (e, id) => {
+const removeCraftEvent = (e) => {
   e.preventDefault();
+  // debugger
+  const id = e.target.id
+  // debugger
   fetch(`http://localhost:3000/crafts/` + id, {
     method: 'DELETE',
   })
-  .then(resp => resp.json())
-  .then(craft => {
-    crafts.pop(craft);
+  .then(() => {
+    // console.log(id)
+    // console.log(crafts)
+    debugger
+    crafts = crafts.filter(craft => craft.id !== parseInt(id))
+    // console.log(crafts)
     renderCraftListPage();
   })
 }

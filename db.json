@@ -1,28 +1,44 @@
 {
   "crafts": [
     {
-      "id": 2,
-      "medium": "Painting",
-      "method": "Acrylic",
-      "level": "Easy",
-      "source": "Google",
-      "link": "www.google.com"
+      "medium": "Clay",
+      "method": "DIY",
+      "level": "Medium",
+      "source": "A Beautiful Mess",
+      "sourceLink": "https://abeautifulmess.com/marbled-clay-ring-dish/",
+      "id": 7
     },
     {
-      "id": 3,
       "medium": "Painting",
-      "method": "Oil",
+      "method": "Nature, decor",
       "level": "Easy",
-      "source": "YouTube",
-      "link": "www.youtube.com"
+      "source": "Crafts By Amanda",
+      "sourceLink": "https://craftsbyamanda.com/coastal-wood-slice-coasters/",
+      "id": 8
     },
     {
-      "medium": "Paper",
-      "method": "Recycle",
-      "level": "Easy",
-      "source": "Chicisms",
-      "sourceLink": "http://chicisms.com/crafty-chic-paint-sample-calendar/",
-      "id": 6
+      "medium": "3D art",
+      "method": "Freestyle",
+      "level": "Medium",
+      "source": "Crafts By Amanda",
+      "sourceLink": "https://craftsbyamanda.com/sea-glass-christmas-tree/",
+      "id": 9
+    },
+    {
+      "medium": "4",
+      "method": "",
+      "level": "",
+      "source": "",
+      "sourceLink": "",
+      "id": 11
+    },
+    {
+      "medium": "6",
+      "method": "",
+      "level": "",
+      "source": "",
+      "sourceLink": "",
+      "id": 12
     }
   ]
 }
