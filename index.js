@@ -9,6 +9,10 @@ const emptyStar = '☆'
 
 const trashCan = '🗑'
 
+// global
+// local function, var does not ignore
+// block scope (curly brackets), var ignore
+
 // Nodes -------------------------------------------------------------------------------------------------------
 
 const mainDiv = () => document.getElementById('main');
@@ -24,7 +28,7 @@ const sourceLinkValue = () => document.getElementById('source-link');
 // Templates --------------------------------------------------------------------------------------------------------
 
 // PULLING DATA FROM DB.JSON INTO TABLE DATA
-const craftTemplate = (craft) => {
+const craftTemplate = ({medium, method, level, link, source, id}) => {
   const tr = document.createElement('tr');
   const tdFavorite = document.createElement('td');
   const tdMedium = document.createElement('td');
@@ -37,17 +41,17 @@ const craftTemplate = (craft) => {
   tdSourceLink.setAttribute('href', tdLink);
   tdSourceLink.classList.add('allLinks')
   tdSource.appendChild(tdSourceLink);
-  tdMedium.innerText = craft.medium;
-  tdMethod.innerText = craft.method;
-  tdLevel.innerText = craft.level;
-  tdLink.innerText = craft.link;
-  tdSourceLink.innerText = craft.source;
+  tdMedium.innerText = medium;
+  tdMethod.innerText = method;
+  tdLevel.innerText = level;
+  tdLink.innerText = link;
+  tdSourceLink.innerText = source;
   tdFavorite.innerText = emptyStar;
   tdFavorite.className = 'star';
   tdFavorite.id = 'favorite' 
   tdTrash.innerText = trashCan;
   tdTrash.className = 'trash';
-  tdTrash.id = craft.id;
+  tdTrash.id = id;
   tr.appendChild(tdFavorite);
   tr.appendChild(tdMedium)
   tr.appendChild(tdMethod)
@@ -61,7 +65,7 @@ const craftTemplate = (craft) => {
 
 // CRAFT LIST TABLE
 const renderCraftListPage = () => {
-  mainDiv().innerHTML = ''
+  // mainDiv().innerHTML = ''
   const h1 = document.createElement('h1');
   const table = document.createElement('table');
   const tr = document.createElement('tr');
@@ -88,7 +92,7 @@ const renderCraftListPage = () => {
   thTrash.innerText = 'Delete';  
   thTrash.classList.add('delete');
   table.classList.add('highlight');
-  tr.appendChild(thFavorites);
+  tr.appendChild(thFavorites); // append method - tr.append(thFavorites, 2nd, 3rd, 4th)
   tr.appendChild(thMedium);
   tr.appendChild(thMethod);
   tr.appendChild(thLevel);
@@ -194,7 +198,7 @@ const renderCraftFormPage = () => {
   sourceLabel.innerText = 'Source';
   sourceSpan.innerText = 'YouTube, Google, etc.';
   sourceLinkLabel.innerText = 'Source Link';
-  sourceLinkSpan.innerText = 'wwww.youtube.com/watch01';
+  sourceLinkSpan.innerText = 'wwww.youtube.com/watch01'; // innerHTML = `(<h1 >){interpolate}`
   mediumDiv.appendChild(mediumInput);
   mediumDiv.appendChild(mediumLabel);
   mediumDiv.appendChild(mediumSpan);
@@ -227,14 +231,16 @@ const renderCraftFormPage = () => {
 
 // FETCH CRAFTS FROM DB.JSON
 const loadCrafts = () => {
-  fetch(localURL + '/crafts')
-  .then(resp => resp.json())
+  fetch(localURL + '/crafts') // returns promise
+  .then(resp => resp.json()) // async returns promise - JS string --> JS object notation
   .then(data => {
     crafts = data
+    // debugger
     renderCraftListPage();
     homePageLinkEvent();
     craftFormLinkEvent();
   })
+  console.log('Hello World!');
 }
 
 // LOGO TO 'HOME PAGE' WITH LIST OF CRAFTS
@@ -242,6 +248,7 @@ const homePageLinkEvent = () => {
   homePageLink().addEventListener('click', (e) => 
   {
      e.preventDefault();
+     mainDiv().innerHTML = ''
      renderCraftListPage(); 
   })  
 } 
@@ -254,6 +261,7 @@ const craftFormLinkEvent = () => {
     renderCraftFormPage();
   })
 }
+
 
 // SUBMIT FORM 
 const submitFormEvent = (e) => {
@@ -291,7 +299,7 @@ const removeCraftEvent = (e) => {
   .then(() => {
     // console.log(id)
     // console.log(crafts)
-    debugger
+    // debugger
     crafts = crafts.filter(craft => craft.id !== parseInt(id))
     // console.log(crafts)
     renderCraftListPage();
@@ -300,6 +308,69 @@ const removeCraftEvent = (e) => {
 
 // When DOM Loads ----------------------------------------------------------------------------------------------
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadCrafts();
-});
+document.addEventListener('DOMContentLoaded', loadCrafts);
+
+// loadCrafts being invoked
+// callback function used as an argument
+
+// const animals = [{
+//   isPet: true,
+//   type: "dog",
+//   name: "Olive",
+// }, 
+// {
+//   isPet: false,
+//   type: "lion",
+//   name: "Nala",
+// },
+// {
+//   isPet: false,
+//   type: "bear",
+//   name: "Honey",
+// },
+// {
+//   isPet: true,
+//   type: "cat",
+//   name: "Maru"
+// },{
+//   isPet: true,
+//   type: "fish",
+//   name: "Dr. Fishy"
+// }]
+
+// // map -- buttons
+// // append buttons DOM
+// // eventListeners console.log('animal name')
+// // conditional -true/false
+
+// const renderButton = (animal) => {
+//   if(animal.isPet === true){
+//   const animalButton = document.createElement('button');
+//   mainDiv().append(animalButton)
+//   animalButton.innerText = animal.type;
+//   animalButton.addEventListener('click', () => {
+//     console.log(animal.name)
+//   })
+//   }
+// };
+
+// newAnimals = animals.map(animal => renderButton(animal))
+
+// const {name, favFood} = person
+
+// add arrow f - two numbers return sum of numbers
+
+// const add = (x, y) => x + y
+
+
+// increment an item on the DOM <button>, start at 0
+
+// button by id
+// increment innerHTML w/ event listener
+
+// const btn = document.getElementById('number');
+// console.log(btn);
+
+// btn.addEventListener('click', () => {
+//   btn.innerHTML++;
+// })
