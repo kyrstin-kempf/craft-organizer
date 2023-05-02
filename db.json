@@ -25,20 +25,20 @@
       "id": 9
     },
     {
-      "medium": "4",
-      "method": "",
-      "level": "",
-      "source": "",
-      "sourceLink": "",
-      "id": 11
+      "medium": "1",
+      "method": "1",
+      "level": "1",
+      "source": "1",
+      "sourceLink": "1",
+      "id": 12
     },
     {
-      "medium": "6",
-      "method": "",
-      "level": "",
-      "source": "",
-      "sourceLink": "",
-      "id": 12
+      "medium": "2",
+      "method": "2",
+      "level": "2",
+      "source": "2",
+      "sourceLink": "2",
+      "id": 13
     }
   ]
 }
