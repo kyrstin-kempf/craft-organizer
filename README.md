@@ -19,5 +19,5 @@ This way, links to craft ideas can be easily found and referened based on medium
 
 ### Installation Instructions
 * Fork and clone
-* Run json server for db.json
-* Open index.html in the browser
+* Run `json-server --watch db.json`
+* In a separate terminal, `open index.html`
