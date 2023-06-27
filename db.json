@@ -1,4 +1,5 @@
-[
+{
+  "crafts": [
     {
       "medium": "Clay",
       "method": "DIY",
@@ -39,4 +40,5 @@
       "sourceLink": "2",
       "id": 13
     }
-]
+  ]
+}
