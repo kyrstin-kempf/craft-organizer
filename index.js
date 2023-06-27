@@ -28,7 +28,7 @@ const sourceLinkValue = () => document.getElementById('source-link');
 // Templates --------------------------------------------------------------------------------------------------------
 
 // PULLING DATA FROM DB.JSON INTO TABLE DATA
-const craftTemplate = ({medium, method, level, link, source, id}) => {
+const craftTemplate = ({medium, method, level, source, sourceLink, id}) => {
   const tr = document.createElement('tr');
   const tdFavorite = document.createElement('td');
   const tdMedium = document.createElement('td');
@@ -36,15 +36,14 @@ const craftTemplate = ({medium, method, level, link, source, id}) => {
   const tdLevel = document.createElement('td');
   const tdSource = document.createElement('td');
   const tdSourceLink = document.createElement('a');
-  const tdLink = document.createElement('a');
   const tdTrash = document.createElement('td');
-  tdSourceLink.setAttribute('href', tdLink);
+  tdSourceLink.setAttribute('href', sourceLink);
+  tdSourceLink.setAttribute('target', "_blank");
   tdSourceLink.classList.add('allLinks')
   tdSource.appendChild(tdSourceLink);
   tdMedium.innerText = medium;
   tdMethod.innerText = method;
   tdLevel.innerText = level;
-  tdLink.innerText = link;
   tdSourceLink.innerText = source;
   tdFavorite.innerText = emptyStar;
   tdFavorite.className = 'star';
@@ -198,7 +197,7 @@ const renderCraftFormPage = () => {
   sourceLabel.innerText = 'Source';
   sourceSpan.innerText = 'YouTube, Google, etc.';
   sourceLinkLabel.innerText = 'Source Link';
-  sourceLinkSpan.innerText = 'wwww.youtube.com/watch01'; // innerHTML = `(<h1 >){interpolate}`
+  sourceLinkSpan.innerText = 'https://www.youtube.com/watch01 you must include the http protocol!'; // innerHTML = `(<h1 >){interpolate}`
   mediumDiv.appendChild(mediumInput);
   mediumDiv.appendChild(mediumLabel);
   mediumDiv.appendChild(mediumSpan);
@@ -283,6 +282,7 @@ const submitFormEvent = (e) => {
   .then(resp => resp.json())
   .then(craft => {
     crafts.push(craft);
+    mainDiv().innerHTML = ''
     renderCraftListPage();
   })
 }
@@ -302,6 +302,7 @@ const removeCraftEvent = (e) => {
     // debugger
     crafts = crafts.filter(craft => craft.id !== parseInt(id))
     // console.log(crafts)
+    mainDiv().innerHTML = ''
     renderCraftListPage();
   })
 }
