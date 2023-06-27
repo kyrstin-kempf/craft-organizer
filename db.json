@@ -1,28 +1,44 @@
 {
-    "crafts": [
-        {
-            "id": 1,
-            "medium": "Painting",
-            "method": "Watercolor",
-            "level": "Easy",
-            "source": "YouTube",
-            "link": "www.youtube.com"
-        },
-        {
-            "id": 2,
-            "medium": "Painting",
-            "method": "Acrylic",
-            "level": "Easy",
-            "source": "Google",
-            "link": "www.google.com"
-        },
-        {
-            "id": 3,
-            "medium": "Painting",
-            "method": "Oil",
-            "level": "Easy",
-            "source": "YouTube",
-            "link": "www.youtube.com"
-        }
-    ]
+  "crafts": [
+    {
+      "medium": "Clay",
+      "method": "DIY",
+      "level": "Medium",
+      "source": "A Beautiful Mess",
+      "sourceLink": "https://abeautifulmess.com/marbled-clay-ring-dish/",
+      "id": 7
+    },
+    {
+      "medium": "Painting",
+      "method": "Nature, decor",
+      "level": "Easy",
+      "source": "Crafts By Amanda",
+      "sourceLink": "https://craftsbyamanda.com/coastal-wood-slice-coasters/",
+      "id": 8
+    },
+    {
+      "medium": "3D art",
+      "method": "Freestyle",
+      "level": "Medium",
+      "source": "Crafts By Amanda",
+      "sourceLink": "https://craftsbyamanda.com/sea-glass-christmas-tree/",
+      "id": 9
+    },
+    {
+      "medium": "1",
+      "method": "1",
+      "level": "1",
+      "source": "1",
+      "sourceLink": "1",
+      "id": 12
+    },
+    {
+      "medium": "2",
+      "method": "2",
+      "level": "2",
+      "source": "2",
+      "sourceLink": "2",
+      "id": 13
+    }
+  ]
 }

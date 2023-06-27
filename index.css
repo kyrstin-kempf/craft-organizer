@@ -1,0 +1,86 @@
+a.allLinks {
+    color: #ffab91 !important;
+}
+
+h1.title {
+    text-align: center;
+    color: #ffab91;
+    font-size: 50px;
+    padding-top: 0px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+h2.add-craft-title {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+    padding-bottom: 20px;
+}
+
+/* label color */
+.input-field label.active {
+    color: #000;
+    font-size: 20px;
+}
+
+div.input-field.col.s6 input[type=text]:focus + label {
+    color: #ffab91;
+}
+
+div.input-field.col.s6 input[type=text]:focus {
+    border-bottom: 1px solid #ffab91;
+    box-shadow: none;
+}
+
+div.input-field.col.s12 input[type=text]:focus + label {
+    color: #ffab91;
+}
+
+div.input-field.col.s12 input[type=text]:focus {
+    border-bottom: 1px solid #ffab91;
+    box-shadow: none;
+}
+
+input.waves-button-input{
+    color: white;
+}
+
+.btn {
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+/** Adjusting favorite star **/
+.star {
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.trash {
+    cursor: pointer;
+    text-align: center;
+}
+
+.delete {
+    text-align: center;
+    width: 10%;
+}
+
+.favorite {
+    text-align: center;
+    width: 10%;
+}
+
+.thMedium {
+    width: 20%;
+}
+
+.thMethod {
+    width: 20%;
+}
+
+tr td {
+    padding: 5px;
+}
