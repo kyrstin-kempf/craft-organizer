@@ -3,6 +3,8 @@ The Craft Organizer is a **minimal viable product (MVP)** that allows the user t
 
 This way, links to craft ideas can be easily found and referened based on medium, method, and challenge level with corresponding source link.
 
+![](craftOrganizer.gif)
+
 ### Features
 * Easily toggle between adding crafts and viewing craft list without needing to refresh the page
 * Craft ideas saved to db.json
